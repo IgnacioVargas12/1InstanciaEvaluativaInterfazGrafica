@@ -1,0 +1,41 @@
+
+package pkg1ieinterfazgrafica;
+
+
+abstract public class PersonaAcademica {
+    //Atributos
+    private String nombre;
+    private String legajo;
+    
+    //Constructor
+    PersonaAcademica(String nombre, String legajo){
+        this.nombre = nombre;
+        this.legajo = legajo;
+    }
+    
+    //Getters
+    public String GetNombre() {return nombre;}
+    public String getLegajo() {return legajo;}
+    
+    //Setters
+    public void SetNombre(String nombre){
+        if (nombre != null && !nombre.isEmpty()){
+            this.nombre = nombre;
+        }
+        else {
+            System.out.println("Error: el nombre no puede estar vacio");
+        }
+    }
+    
+    public void SetLegajo(String legajo){
+        if (legajo != null){
+            this.legajo = legajo;
+        }
+        else {
+            System.out.println("Error: el legajo no puede ser nulo");
+        }
+    }
+    
+    //metodos
+    public abstract void mostrarResumen();
+}
