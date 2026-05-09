@@ -5,14 +5,17 @@ import java.util.ArrayList;
 public class InscripcionMateria implements Evaluable {
     //Atributos
     private Materia materia;
-    private int totalClases;
+    private int totalClases ;
     private int clasesAsistidas;
     private ArrayList<Double> notas;;
     
-    InscripcionMateria(String materia, int totalClases, int clasesAsistidas, double notas){
-        this.totalClases = totalClases;
-        this.clasesAsistidas = clasesAsistidas;
+    
+    InscripcionMateria(Materia materia){
+        this.totalClases = 0;
+        this.clasesAsistidas = 0;
         this.notas = new ArrayList<>();
+        this.materia = materia;
+        
     }
     
     public boolean registrarAsistencia(boolean presente){
@@ -82,4 +85,7 @@ public class InscripcionMateria implements Evaluable {
     }
     return suma / notas.size();
     }
+    public Materia getMateria() {
+    return this.materia;
+}
 }
