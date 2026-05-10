@@ -29,52 +29,49 @@ public abstract class Estudiante extends PersonaAcademica implements Consultable
     
     public void inscribirse(Materia nuevaMateria) 
     {
-            if (nuevaMateria == null) return;
+        if (nuevaMateria == null) return;
 
-    for (InscripcionMateria ins : materias) 
-        {
-        if (ins.getMateria().getCodigo().equalsIgnoreCase(nuevaMateria.getCodigo())) 
-        {
-            System.out.println("Error: Ya estás inscripto en " + nuevaMateria.getNombre());
-            return; 
+        for (InscripcionMateria ins : materias) 
+            {
+            if (ins.getMateria().getCodigo().equalsIgnoreCase(nuevaMateria.getCodigo())) 
+            {
+                System.out.println("Error: Ya estás inscripto en " + nuevaMateria.getNombre());
+                return; 
+            }
         }
-    }
-    InscripcionMateria nuevaInscripcion = new InscripcionMateria(nuevaMateria);
-    this.materias.add(nuevaInscripcion);
+        InscripcionMateria nuevaInscripcion = new InscripcionMateria(nuevaMateria);
+        this.materias.add(nuevaInscripcion);
 
-    System.out.println("Inscripción exitosa a: " + nuevaMateria.getNombre());
+        System.out.println("Inscripción exitosa a: " + nuevaMateria.getNombre());
     }
     
     
 
    public boolean darDeBaja(String codigoMateria) {
- 
-    for (int i = 0; i < materias.size(); i++) {
-        InscripcionMateria ins = materias.get(i);
+        for (int i = 0; i < materias.size(); i++) {
+            InscripcionMateria ins = materias.get(i);
 
-        if (ins.getMateria().getCodigo().equalsIgnoreCase(codigoMateria)) {
-
-          
-            materias.remove(i);
-            System.out.println("Sistema: Se ha dado de baja la materia " + codigoMateria);
-            return true; 
+            if (ins.getMateria().getCodigo().equalsIgnoreCase(codigoMateria)) {
+                materias.remove(i);
+                System.out.println("Sistema: Se ha dado de baja la materia " + codigoMateria);
+                return true; 
+            }
         }
+        System.out.println("Error: El alumno no está inscripto en la materia " + codigoMateria);
+        return false;
     }
-    System.out.println("Error: El alumno no está inscripto en la materia " + codigoMateria);
-    return false;
-}
 
     public InscripcionMateria getInscripcion(String codigoMateria) {
-    if (codigoMateria == null || codigoMateria.isBlank()) {
+        if (codigoMateria == null || codigoMateria.isBlank()) {
+            return null;
+        }
+        for (InscripcionMateria ins : materias) {
+            if (ins.getMateria().getCodigo().equalsIgnoreCase(codigoMateria)) {
+                return ins; 
+            }
+        }
         return null;
     }
-    for (InscripcionMateria ins : materias) {
-        if (ins.getMateria().getCodigo().equalsIgnoreCase(codigoMateria)) {
-            return ins; 
-        }
-    }
-    return null;
-}
 
     public String getCarrera() {
         return carrera;
@@ -124,14 +121,21 @@ public abstract class Estudiante extends PersonaAcademica implements Consultable
             return sumaDePromedios / materiasConNotas;
        
     }
+    
     public ArrayList<InscripcionMateria> getMateriasCriticas() {
-    ArrayList<InscripcionMateria> criticas = new ArrayList<>();
-    for (InscripcionMateria ins : materias) {
-        double porcentaje = ins.getPorcentajeAsistencia();
-        if (porcentaje >= 75 && porcentaje <= 85) {
-            criticas.add(ins);
+        ArrayList<InscripcionMateria> criticas = new ArrayList<>();
+        for (InscripcionMateria ins : materias) {
+            double porcentaje = ins.getPorcentajeAsistencia();
+            if (porcentaje >= 75 && porcentaje <= 85) {
+                criticas.add(ins);
+            }
         }
+        return criticas;
     }
-    return criticas;
-}
+    
+    public ArrayList<InscripcionMateria> getRankingMaterias() {
+        ArrayList<InscripcionMateria> listaOrdenada = new ArrayList<>(this.materias);
+        listaOrdenada.sort((m1, m2) -> Double.compare(m2.GetPuntajeRanking(), m1.GetPuntajeRanking()));
+        return listaOrdenada;
+    }
 }

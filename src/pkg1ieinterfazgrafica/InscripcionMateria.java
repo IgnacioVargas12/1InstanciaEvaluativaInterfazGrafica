@@ -2,7 +2,7 @@
 package pkg1ieinterfazgrafica;
 import java.util.ArrayList;
 
-public class InscripcionMateria implements Evaluable {
+public class InscripcionMateria implements Evaluable, Rankeable {
     //Atributos
     private Materia materia;
     private int totalClases ;
@@ -19,21 +19,21 @@ public class InscripcionMateria implements Evaluable {
     }
     
     public boolean registrarAsistencia(boolean presente){
-    this.totalClases++;
-    if (presente){
-            this.clasesAsistidas++;
-        }
-    double porcentaje = getPorcentajeAsistencia();
-    
-    System.out.println("Registro de Asistencia: " + materia.getNombre());
-        System.out.println("Asistencia actual: " + porcentaje);
-    
-    if (porcentaje < 75) {
-            System.out.println("ALERTA CRITICA: El estudiante tiene menos del 75%. Condición: LIBRE.");
-        } else if (porcentaje < 80) {
-            System.out.println("ADVERTENCIA: Asistencia por debajo del 80% (Zona de riesgo).");
-        }
-    return true;
+        this.totalClases++;
+        if (presente){
+                this.clasesAsistidas++;
+            }
+        double porcentaje = getPorcentajeAsistencia();
+
+        System.out.println("Registro de Asistencia: " + materia.getNombre());
+            System.out.println("Asistencia actual: " + porcentaje);
+
+        if (porcentaje < 75) {
+                System.out.println("ALERTA CRITICA: El estudiante tiene menos del 75%. Condición: LIBRE.");
+            } else if (porcentaje < 80) {
+                System.out.println("ADVERTENCIA: Asistencia por debajo del 80% (Zona de riesgo).");
+            }
+        return true;
     }
     
     public void agregarNota(double nota){
@@ -78,14 +78,27 @@ public class InscripcionMateria implements Evaluable {
     public double getPromedio() {
         if (notas == null || notas.isEmpty()) {
         return 0.0;
-    }
-    double suma = 0;
-    for (double nota : notas) {
-        suma += nota;
-    }
-    return suma / notas.size();
-    }
+        }
+        double suma = 0;
+        for (double nota : notas) {
+            suma += nota;
+        }
+        return suma / notas.size();
+        }
+
     public Materia getMateria() {
-    return this.materia;
-}
+        return this.materia;
+    }
+    
+    @Override
+    public double GetPuntajeRanking(){
+        double asistenciaPorcentaje = 0;
+        if (totalClases > 0) {
+        asistenciaPorcentaje = (clasesAsistidas * 100.0) / totalClases;
+        }
+  
+        return (getPromedio() * 0.6) + ((asistenciaPorcentaje / 10) * 0.4);
+        //se divide asistenciaPorcentaje por 10 para que el puntaje
+        //esté en la escala 0-10
+    }
 }
