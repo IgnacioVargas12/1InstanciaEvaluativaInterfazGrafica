@@ -72,11 +72,11 @@ public class Materia implements Consultable{
 }
 
 @Override
-public void mostrarResumen() {
-    System.out.println("===== MATERIA =====");
-    System.out.println("Nombre: " + nombre);
-    System.out.println("Código: " + codigo);
-    System.out.println("Cuatrimestre: " + cuatrimestre);
-    System.out.println("Año: " + anio);
-}
+    public void mostrarResumen() {
+        System.out.println("===== MATERIA =====");
+        System.out.println("Nombre: " + nombre);
+        System.out.println("Código: " + codigo);
+        System.out.println("Cuatrimestre: " + cuatrimestre);
+        System.out.println("Año: " + anio);
+    }
 }
