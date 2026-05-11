@@ -2,7 +2,7 @@ package pkg1ieinterfazgrafica;
 
 import java.util.ArrayList;
 
-public abstract class Estudiante extends PersonaAcademica implements Consultable {
+class Estudiante extends PersonaAcademica implements Consultable {
 
     private String carrera;
     private int anioIngreso;
@@ -135,7 +135,43 @@ public abstract class Estudiante extends PersonaAcademica implements Consultable
     
     public ArrayList<InscripcionMateria> getRankingMaterias() {
         ArrayList<InscripcionMateria> listaOrdenada = new ArrayList<>(this.materias);
-        listaOrdenada.sort((m1, m2) -> Double.compare(m2.GetPuntajeRanking(), m1.GetPuntajeRanking()));
+        listaOrdenada.sort((m1, m2) -> Double.compare(m2.getPuntajeRanking(), m1.getPuntajeRanking()));
         return listaOrdenada;
     }
+    
+    public ArrayList<InscripcionMateria> getMaterias(){
+        return this.materias;
+    }
+    
+    public InscripcionMateria buscarPorCodigo(String codigo) {
+        for (InscripcionMateria ins : materias) {
+            if (ins.getMateria().getCodigo().equalsIgnoreCase(codigo)) {
+                return ins; 
+            }
+        }
+        return null; 
+    }
+
+    public InscripcionMateria buscarPorNombre(String nombre) {
+        for (InscripcionMateria ins : materias) {
+            if (ins.getMateria().getNombre().equalsIgnoreCase(nombre)) {
+                return ins; 
+            }
+        }
+        return null;
+    }
+    
+    public ArrayList<InscripcionMateria> getMateriasEnRiesgo() {
+        ArrayList<InscripcionMateria> enRiesgo = new ArrayList<>();
+
+        for (InscripcionMateria ins : materias) {
+            double asistencia = ins.getPorcentajeAsistencia();
+            if (asistencia >= 75 && asistencia <= 85) {
+                enRiesgo.add(ins);
+            }
+        }
+        enRiesgo.sort((m1, m2) -> Double.compare(m1.getPorcentajeAsistencia(), m2.getPorcentajeAsistencia()));
+        return enRiesgo;
+    }
+    
 }

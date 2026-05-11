@@ -18,6 +18,9 @@ public class InscripcionMateria implements Evaluable, Rankeable {
         
     }
     
+    public int getTotalClases() {return totalClases;}
+    public int getClasesAsistidas() {return clasesAsistidas;}
+    
     public boolean registrarAsistencia(boolean presente){
         this.totalClases++;
         if (presente){
@@ -37,7 +40,7 @@ public class InscripcionMateria implements Evaluable, Rankeable {
     }
     
     public void agregarNota(double nota){
-        if (nota < 0 && nota > 10){
+        if (nota < 0 || nota > 10){
             System.out.println("Error: la nota solo puede tener un valor entre 0-10");
             return;
         }
@@ -47,6 +50,14 @@ public class InscripcionMateria implements Evaluable, Rankeable {
         }
         this.notas.add(nota);
         System.out.println("Nota registrada con exito");
+        if(nota >= 6){
+            System.out.println("Ha aprobado el parcial/TP");
+        }
+        for (int i = 0; i < notas.size(); i++){
+            double aux = notas.get(i);
+            System.out.println("Nota " + (i + 1) + ": "+ aux);
+        }
+        System.out.println("El promedio actual es: " + getPromedio());
     }
     
     public double getPorcentajeAsistencia() {
@@ -91,7 +102,7 @@ public class InscripcionMateria implements Evaluable, Rankeable {
     }
     
     @Override
-    public double GetPuntajeRanking(){
+    public double getPuntajeRanking(){
         double asistenciaPorcentaje = 0;
         if (totalClases > 0) {
         asistenciaPorcentaje = (clasesAsistidas * 100.0) / totalClases;

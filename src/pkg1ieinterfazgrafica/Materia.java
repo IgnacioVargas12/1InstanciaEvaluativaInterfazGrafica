@@ -40,10 +40,11 @@ public class Materia implements Consultable{
         return codigo;
     }
     public void setCodigo(String codigo) {
+        if (codigo == null || codigo.length() < 3 || codigo.length() > 10) {
+            throw new IllegalArgumentException("El codigo debe tener entre 3 y 10 caracteres");
+        }
         if (codigosRegistrados.contains(codigo)) {
-            throw new IllegalArgumentException(
-                "Ya existe una materia con ese código"
-            );
+            throw new IllegalArgumentException("El codigo ya está registrado");
         }
         codigosRegistrados.add(codigo);
         this.codigo = codigo;
