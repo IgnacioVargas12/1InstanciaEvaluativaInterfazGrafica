@@ -32,7 +32,7 @@ public class InscripcionMateria implements Evaluable, Rankeable {
             System.out.println("Asistencia actual: " + porcentaje);
 
         if (porcentaje < 75) {
-                System.out.println("ALERTA CRITICA: El estudiante tiene menos del 75%. Condición: LIBRE.");
+                System.out.println("ALERTA CRITICA: El estudiante tiene menos del 75%. Condicion: LIBRE.");
             } else if (porcentaje < 80) {
                 System.out.println("ADVERTENCIA: Asistencia por debajo del 80% (Zona de riesgo).");
             }

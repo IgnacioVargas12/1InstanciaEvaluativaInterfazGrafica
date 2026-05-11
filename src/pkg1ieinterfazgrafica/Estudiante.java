@@ -35,14 +35,14 @@ class Estudiante extends PersonaAcademica implements Consultable {
             {
             if (ins.getMateria().getCodigo().equalsIgnoreCase(nuevaMateria.getCodigo())) 
             {
-                System.out.println("Error: Ya estás inscripto en " + nuevaMateria.getNombre());
+                System.out.println("Error: Ya estas inscripto en " + nuevaMateria.getNombre());
                 return; 
             }
         }
         InscripcionMateria nuevaInscripcion = new InscripcionMateria(nuevaMateria);
         this.materias.add(nuevaInscripcion);
 
-        System.out.println("Inscripción exitosa a: " + nuevaMateria.getNombre());
+        System.out.println("Inscripcion exitosa a: " + nuevaMateria.getNombre());
     }
     
     
@@ -57,7 +57,7 @@ class Estudiante extends PersonaAcademica implements Consultable {
                 return true; 
             }
         }
-        System.out.println("Error: El alumno no está inscripto en la materia " + codigoMateria);
+        System.out.println("Error: El alumno no esta inscripto en la materia " + codigoMateria);
         return false;
     }
 
@@ -79,7 +79,7 @@ class Estudiante extends PersonaAcademica implements Consultable {
 
     public void setCarrera(String carrera) {
         if (carrera.isEmpty()) {
-            System.out.println("Error: la carrera no puede estar vacía.");
+            System.out.println("Error: la carrera no puede estar vacia.");
         } else {
             this.carrera = carrera;
         }
@@ -91,7 +91,7 @@ class Estudiante extends PersonaAcademica implements Consultable {
 
     public void setAnioIngreso(int anioIngreso) {
         if (anioIngreso < 1900 || anioIngreso > 2100) {
-            System.out.println("Error: el año de ingreso no es válido.");
+            System.out.println("Error: el año de ingreso no es valido.");
         } else {
             this.anioIngreso = anioIngreso;
         }

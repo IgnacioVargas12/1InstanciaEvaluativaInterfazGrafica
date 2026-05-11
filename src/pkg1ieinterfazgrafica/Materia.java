@@ -44,7 +44,7 @@ public class Materia implements Consultable{
             throw new IllegalArgumentException("El codigo debe tener entre 3 y 10 caracteres");
         }
         if (codigosRegistrados.contains(codigo)) {
-            throw new IllegalArgumentException("El codigo ya está registrado");
+            throw new IllegalArgumentException("El codigo ya esta registrado");
         }
         codigosRegistrados.add(codigo);
         this.codigo = codigo;
@@ -68,7 +68,7 @@ public class Materia implements Consultable{
     if (anio != 0) {
         this.anio = anio;
     } else {
-        System.out.println("El año no puede estar vacío");
+        System.out.println("El año no puede estar vacio");
     }
 }
 
@@ -76,8 +76,8 @@ public class Materia implements Consultable{
     public void mostrarResumen() {
         System.out.println("===== MATERIA =====");
         System.out.println("Nombre: " + nombre);
-        System.out.println("Código: " + codigo);
+        System.out.println("Codigo: " + codigo);
         System.out.println("Cuatrimestre: " + cuatrimestre);
-        System.out.println("Año: " + anio);
+        System.out.println("Anio: " + anio);
     }
 }
