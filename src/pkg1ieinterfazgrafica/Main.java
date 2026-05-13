@@ -114,10 +114,10 @@ public class Main {
                                     InscripcionMateria encontrada = alumno.buscarPorCodigo(codigo2);
                                     if (encontrada != null) {
                                         System.out.println("Materia encontrada!");
-                                        System.out.println("Codigo: " + encontrada.getMateria().getCodigo());
+                                        System.out.println("Nombre: " + encontrada.getMateria().getNombre());
                                         System.out.println("Promedio actual: " + encontrada.getPromedio());
                                     } else {
-                                        System.out.println("El alumno no esta inscripto en la materia: " + codigo2);
+                                        System.out.println("El alumno no esta inscripto en ninguna materia con el codigo: " + codigo2);
                                     }
                                     break;
                                 }
@@ -164,7 +164,7 @@ public class Main {
                     System.out.println("\n1. Reporte de situacion general");
                     System.out.println("2. Reporte de materias criticas");
                     System.out.println("3. Reporte de materias aprobadas");
-                    System.out.println("Opcion: ");
+                    System.out.print("Opcion: ");
                     int opcion4;
                     opcion4 = Integer.parseInt(sc.nextLine());
                     switch (opcion4){
@@ -276,7 +276,7 @@ public class Main {
                             break;
                     }
                     break;
-                case 0: System.out.println("Hasta luego");
+                case 0: System.out.println("\nHasta luego!");
                     break;
                 default:
                     if (opcion!= -1){

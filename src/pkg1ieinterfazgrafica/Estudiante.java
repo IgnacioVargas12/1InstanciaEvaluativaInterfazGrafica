@@ -19,7 +19,7 @@ class Estudiante extends PersonaAcademica implements Consultable {
 
     @Override
     public void mostrarResumen() {
-        System.out.println("=== Resumen de Estudiante ===");
+        System.out.println("\n=== Resumen de Estudiante ===");
         System.out.println("Nombre:   " + GetNombre());
         System.out.println("Legajo:   " + getLegajo());
         System.out.println("Carrera:  " + carrera);
